@@ -3,9 +3,39 @@ import 'package:habit_tracker/src/core/utils/app_extensions.dart';
 import 'package:habit_tracker/src/core/utils/app_images.dart';
 import 'package:habit_tracker/src/features/home/presentation/controller/home_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  ItemScrollController itemScrollController = ItemScrollController();
+
+  var provider = HomeProvider();
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollFunction();
+    });
+  }
+
+  void scrollFunction() {
+    itemScrollController.scrollTo(
+      index: provider.findCurrentDateIndex() - 2,
+      duration: Duration(milliseconds: 300),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +55,9 @@ class HomeScreen extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xFF005ECE),
-            onPressed: () {},
+            onPressed: () {
+              value.openAnimatedPopup(context);
+            },
             child: Icon(Icons.add, color: Colors.white),
           ),
           body: SafeArea(
@@ -35,7 +67,8 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 90,
                     width: context.screenWidth,
-                    child: ListView.separated(
+                    child: ScrollablePositionedList.separated(
+                      itemScrollController: itemScrollController,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(

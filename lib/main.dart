@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:habit_tracker/app.dart';
 
 void main() async {
   await app(
-    firebaseInitialization: () async {},
+    firebaseInitialization: () async {
+      await Firebase.initializeApp();
+    },
     flavorConfiguration: () async {},
   );
 }

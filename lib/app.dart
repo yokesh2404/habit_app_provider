@@ -9,6 +9,7 @@ Future<void> app({
   AsyncCallback? flavorConfiguration,
 }) async {
   await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
     await firebaseInitialization?.call();
     await flavorConfiguration?.call();
 

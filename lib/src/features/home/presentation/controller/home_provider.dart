@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/src/features/home/presentation/controller/home_state.dart';
+import 'package:habit_tracker/src/features/home/presentation/widgets/create_task.dart';
 
 class HomeProvider extends ChangeNotifier {
   HomeState _state = HomeState();
@@ -33,5 +34,35 @@ class HomeProvider extends ChangeNotifier {
     }
 
     return false;
+  }
+
+  int findCurrentDateIndex() {
+    if (state.dateList.isNotEmpty) {
+      int findIndex = state.dateList.indexWhere((d) => isCurrentDate(d));
+
+      return findIndex;
+    }
+
+    return -1;
+  }
+
+  void openAnimatedPopup(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: "Popup",
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return SizedBox();
+      },
+      transitionDuration: Duration(milliseconds: 300),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return Hero(
+          tag: "Popup",
+          curve: Curves.fastOutSlowIn,
+          transitionOnUserGestures: true,
+          child: Dialog(child: CreateTask()),
+        );
+      },
+    );
   }
 }
