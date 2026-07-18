@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habit_tracker/src/core/route/app_route_name.dart';
 import 'package:habit_tracker/src/features/home/presentation/pages/home_screen.dart';
+import 'package:habit_tracker/src/features/new_task/presentation/pages/new_task_screen.dart';
 import 'package:habit_tracker/src/features/splash/presentation/pages/splash_screen.dart';
 
 class Routes {
@@ -21,6 +22,13 @@ class Routes {
         name: AppRouteName.homeName,
         builder: (context, state) {
           return const HomeScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRouteName.newTask,
+        name: AppRouteName.newTaskName,
+        builder: (context, state) {
+          return const NewTaskScreen();
         },
       ),
     ],

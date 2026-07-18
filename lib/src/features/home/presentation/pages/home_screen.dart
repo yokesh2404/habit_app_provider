@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:habit_tracker/src/core/route/app_route_name.dart';
 import 'package:habit_tracker/src/core/utils/app_extensions.dart';
 import 'package:habit_tracker/src/core/utils/app_images.dart';
 import 'package:habit_tracker/src/features/home/presentation/controller/home_provider.dart';
@@ -56,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xFF005ECE),
             onPressed: () {
-              value.openAnimatedPopup(context);
+              context.pushNamed(AppRouteName.newTaskName);
             },
             child: Icon(Icons.add, color: Colors.white),
           ),
