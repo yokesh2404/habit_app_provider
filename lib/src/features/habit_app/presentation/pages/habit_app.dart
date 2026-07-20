@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habit_tracker/src/core/route/routes.dart';
 import 'package:habit_tracker/src/core/utils/app_theme.dart';
 import 'package:habit_tracker/src/features/home/presentation/controller/home_provider.dart';
+import 'package:habit_tracker/src/features/new_task/presentation/controller/new_task_provider.dart';
 import 'package:provider/provider.dart';
 
 class HabitApp extends StatelessWidget {
@@ -13,6 +14,9 @@ class HabitApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<HomeProvider>(
           create: (context) => HomeProvider(),
+        ),
+        ChangeNotifierProvider<NewTaskProvider>(
+          create: (context) => NewTaskProvider(),
         ),
       ],
       child: MaterialApp.router(
