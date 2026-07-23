@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habit_tracker/src/core/route/app_route_name.dart';
 import 'package:habit_tracker/src/features/home/presentation/pages/home_screen.dart';
+import 'package:habit_tracker/src/features/login/presentation/pages/login_screen.dart';
 import 'package:habit_tracker/src/features/new_task/presentation/pages/new_task_screen.dart';
 import 'package:habit_tracker/src/features/splash/presentation/pages/splash_screen.dart';
 
@@ -15,6 +16,13 @@ class Routes {
         name: AppRouteName.splashName,
         builder: (context, state) {
           return const SplashScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRouteName.login,
+        name: AppRouteName.loginName,
+        builder: (context, state) {
+          return const LoginScreen();
         },
       ),
       GoRoute(

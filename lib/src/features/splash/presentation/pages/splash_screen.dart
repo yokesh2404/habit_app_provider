@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:habit_tracker/src/core/route/app_route_name.dart';
-import 'package:habit_tracker/src/core/utils/app_extensions.dart';
-import 'package:habit_tracker/src/core/utils/app_images.dart';
+
+import '../../../../core/core.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +17,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer.periodic(Duration(seconds: 2), (_) {
-      context.goNamed(AppRouteName.homeName);
+      if (HiveService.isLoggedIn) {
+        context.goNamed(AppRouteName.homeName);
+      } else {
+        context.goNamed(AppRouteName.loginName);
+      }
     });
   }
 

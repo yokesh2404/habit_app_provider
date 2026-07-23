@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:habit_tracker/src/core/utils/app_colors.dart';
-import 'package:habit_tracker/src/core/utils/app_extensions.dart';
+
 import 'package:habit_tracker/src/features/new_task/presentation/controller/new_task_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/core.dart';
 
 class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({super.key});
